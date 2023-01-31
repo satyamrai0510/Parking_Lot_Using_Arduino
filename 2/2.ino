@@ -16,10 +16,8 @@ LiquidCrystal lcd(rs,en,d4,d5,d6,d7);
 float vacant = 8;
 float occupied = 0;
 
-
 void setup() 
 {
-
 Serial.begin(9600);
 s1.attach(5);
 s2.attach(6);
@@ -30,19 +28,16 @@ pinMode (LED2, OUTPUT);
 irrecv.enableIRIn();
 lcd.begin(20, 4);
 // analogWrite(11, Contrast);
-
 }
 
 void loop(){
   int sensorStatus1 = digitalRead(IRSensor1); 
   if (sensorStatus1 == 1)
   {
-    
     digitalWrite(LED1, LOW); 
     // Serial.println("Motion Detected!");
     s1.write(90);
-    delay(1000);
-       
+    delay(1000); 
   }
   else  {
     digitalWrite(LED1, HIGH);
@@ -51,21 +46,17 @@ void loop(){
     delay(2000);
     occupied--;
     vacant++;  
-       
     }
   
 
 
 int sensorStatus2 = digitalRead(IRSensor2);
 if (sensorStatus2 == 1)
-  {
-    
+  { 
     digitalWrite(LED2, LOW); 
     // Serial.println("Motion Detected!");
     s2.write(90);
-    delay(1000);
-    
-      
+    delay(1000);   
   }
   else  {
     digitalWrite(LED2, HIGH);
@@ -76,11 +67,8 @@ if (sensorStatus2 == 1)
     vacant--;      
     }
   
-
 lcd.setCursor(0,0);
 lcd.print("    Parking Lot");
-
-
 
 lcd.setCursor(0,1);
 lcd.print("Total slot   : 8");
@@ -91,25 +79,6 @@ lcd.setCursor(0,3);
 
 lcd.print("occupied slot: ");
 lcd.print(occupied);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   if (irrecv.decode(&results)){
   
@@ -125,10 +94,6 @@ lcd.print(occupied);
         }
         // else if(results.value==16720605){s2.write(90);digitalWrite(LED2, LOW);delay(1000);
         // }
-  
-        irrecv.resume();
-        
+        irrecv.resume();  
   }
-
-
 }
