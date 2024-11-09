@@ -10,10 +10,8 @@ const int RECV_PIN = 2;
 IRrecv irrecv(RECV_PIN);
 decode_results results;
 
-
 void setup() 
 {
-
 Serial.begin(9600);
 s1.attach(5);
 s2.attach(6);
@@ -22,39 +20,31 @@ pinMode (IRSensor2, INPUT);
 pinMode (LED1, OUTPUT); 
 pinMode (LED2, OUTPUT);
 irrecv.enableIRIn();
-
 }
 
 void loop(){
   int sensorStatus1 = digitalRead(IRSensor1); 
   if (sensorStatus1 == 1)
   {
-    
     digitalWrite(LED1, LOW); 
     // Serial.println("Motion Detected!");
     s1.write(90);
-    delay(1000);
-       
+    delay(1000); 
   }
   else  {
     digitalWrite(LED1, HIGH);
     // Serial.println("Motion Ended!");
     s1.write(0);
     delay(2000); 
-       
     }
-  
-
 
 int sensorStatus2 = digitalRead(IRSensor2);
 if (sensorStatus2 == 1)
   {
-    
     digitalWrite(LED2, LOW); 
     // Serial.println("Motion Detected!");
     s2.write(90);
-    delay(1000);
-      
+    delay(1000);  
   }
   else  {
     digitalWrite(LED2, HIGH);
@@ -62,30 +52,6 @@ if (sensorStatus2 == 1)
     s2.write(0);
     delay(2000);      
     }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   if (irrecv.decode(&results)){
   
@@ -99,10 +65,6 @@ if (sensorStatus2 == 1)
         }
         else if(results.value==16720605){s2.write(90);digitalWrite(LED2, LOW);delay(1000);
         }
-  
-        irrecv.resume();
-        
+        irrecv.resume(); 
   }
-
-
 }
